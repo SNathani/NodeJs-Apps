@@ -2,8 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
-
 const app = express();
+const port = process.env.PORT || 2020;
 
 // Connet to database selectively
 if (process.env.ENV === 'Test') {
@@ -11,10 +11,9 @@ if (process.env.ENV === 'Test') {
   const db = mongoose.connect('mongodb://localhost/bookAPI_Tests');
 } else {
   console.log('Connecting to PRODUCTION Database ...');
-  //const db = mongoose.connect('mongodb://localhost/bookAPI-Prod');
+  const db = mongoose.connect('mongodb://localhost/bookAPI');
 }
 
-const port = process.env.PORT || 2020;
 const Book = require('./models/bookModel');
 
 const bookRouter = require('./routes/bookRouter')(Book);
