@@ -28,7 +28,19 @@ function routes(Book) {
   });
 
   bookRouter.route('/books/:bookId')
-    .get((req, res) => res.json(req.book))
+    .get((req, res) => {
+      const host = req.headers.host;
+      const model = req.book;
+      const newBook = model.toJSON();
+
+      newBook.links = {};
+      const genre = model.genre.replace(' ', '%20');
+      newBook.links.genre =`http://${host}/api/books/?genre=${genre}`; 
+      newBook.links.all =`http://${host}/api/books/`; 
+
+      //return modified book
+      res.json(newBook)
+    })
     .put((req, res) => {
       const { book } = req;
       //update entity
