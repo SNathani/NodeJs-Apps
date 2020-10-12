@@ -33,10 +33,10 @@ function routes(Book) {
       const model = req.book;
       const newBook = model.toJSON();
 
-      newBook.links = {};
+      newBook._links = {};
       const genre = model.genre.replace(' ', '%20');
-      newBook.links.genre =`http://${host}/api/books/?genre=${genre}`; 
-      newBook.links.all =`http://${host}/api/books/`; 
+      newBook._links.genre =`http://${host}/api/books/?genre=${genre}`; 
+      newBook._links.all =`http://${host}/api/books/`; 
 
       //return modified book
       res.json(newBook)

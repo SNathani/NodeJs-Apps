@@ -20,7 +20,7 @@ npm install -D eslint
 
 ### Tests
 ```
-npm install -D mocha should sinon
+npm install -D mocha should sinon supertest
 ```
 - Mocha for unit testing
 - Sinon.js to mock objects
